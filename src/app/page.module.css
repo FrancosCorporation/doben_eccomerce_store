@@ -1,0 +1,26 @@
+.main {
+  position: fixed;
+  display: flex;
+  min-height: 100%;
+  height: 100%;
+  /* Adicione esta linha */
+  width: 100%;
+  /* Adicione esta linha */
+}
+
+.div_products {
+  display: flex;
+}
+
+.div_footer_global {
+  position: fixed;
+  width: 100vw;
+  height: 10vh;
+  bottom: 0;
+
+}
+
+.icons_social_media {
+  position: absolute;
+  bottom: 0;
+}

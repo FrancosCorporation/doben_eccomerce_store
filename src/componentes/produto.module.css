@@ -1,0 +1,47 @@
+
+.zoomed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Cor de fundo escura para escurecer a tela */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Coloca a imagem ampliada acima de outros elementos */
+  }
+  
+  .zoomed img {
+    position: absolute;
+    display: flex;
+    max-width: 90%; /* Reduz a largura da imagem ampliada */
+    max-height: 90%; /* Reduz a altura da imagem ampliada */
+    cursor: pointer; /* Adicionado cursor de apontar para permitir fechar a imagem */
+    margin-left: 100px;
+  }
+  
+  /* Adicione estas classes ao seu arquivo CSS */
+.zoomedContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: grid;
+  justify-content: center;
+  justify-self: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+}
+
+.zoomedCloseButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}

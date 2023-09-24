@@ -1,0 +1,168 @@
+[
+  {
+    "titulo": "Planner Universitario",
+    "precoMaior": 199.99,
+    "precoMenor": 149.99,
+    "urls": [
+      "https://images.tcdn.com.br/img/img_prod/620493/planner_semanal_2023_2024_585_1_5c030d5ab35d27e48b6212424aabd401.jpg",
+      "https://images.tcdn.com.br/img/img_prod/620493/planner_semanal_2023_2024_585_2_058299d741a4f748e16e86cd310e0665.jpg",
+      "https://images.tcdn.com.br/img/img_prod/620493/planner_semanal_2023_2024_585_3_7202e50651886032ba78c71cb402a11b.jpg",
+      "https://images.tcdn.com.br/img/img_prod/620493/planner_semanal_2023_2024_585_4_e4805dfa37c1ed3245a89a31f8987eab.jpg"
+    ]
+  },
+  {
+    "titulo": "Conjunto de Cadernos Coloridos",
+    "precoMaior": 109.99,
+    "precoMenor": 89.99,
+    "urls": [
+      "https://m.media-amazon.com/images/I/71FYz86glqL.__AC_SX300_SY300_QL70_ML2_.jpg",
+      "https://m.media-amazon.com/images/I/61uqgWB26CL._AC_SX569_.jpg",
+      "https://m.media-amazon.com/images/I/71RkB0p8HRL._AC_SX569_.jpg",
+      "https://m.media-amazon.com/images/I/712fQNa5bRL._AC_SX569_.jpg"
+    ]
+  },
+  {
+    "titulo": "Canetas Gel Multicoloridas",
+    "precoMaior": 119.99,
+    "precoMenor": 99.99,
+    "urls": [
+      "https://www.example.com/canetas1.jpg"
+    ]
+  },
+  {
+    "titulo": "Kit de Marcadores Pastel",
+    "precoMaior": 129.99,
+    "precoMenor": 109.99,
+    "urls": [
+      "https://www.example.com/marcadores1.jpg"
+    ]
+  },
+  {
+    "titulo": "Agenda de Couro Premium",
+    "precoMaior": 249.99,
+    "precoMenor": 199.99,
+    "urls": [
+      "https://www.example.com/agenda1.jpg"
+    ]
+  },
+  {
+    "titulo": "Lápis de Cor Profissionais",
+    "precoMaior": 179.99,
+    "precoMenor": 149.99,
+    "urls": [
+      "https://www.example.com/lapis1.jpg"
+    ]
+  },
+  {
+    "titulo": "Organizador de Papéis",
+    "precoMaior": 149.99,
+    "precoMenor": 119.99,
+    "urls": [
+      "https://www.example.com/organizador1.jpg"
+    ]
+  },
+  {
+    "titulo": "Kit de Papéis de Scrapbooking",
+    "precoMaior": 159.99,
+    "precoMenor": 129.99,
+    "urls": [
+      "https://www.example.com/scrapbooking1.jpg"
+    ]
+  },
+  {
+    "titulo": "Borrachas Divertidas",
+    "precoMaior": 99.99,
+    "precoMenor": 89.99,
+    "urls": [
+      "https://www.example.com/borrachas1.jpg"
+    ]
+  },
+  {
+    "titulo": "Conjunto de Clips Decorativos",
+    "precoMaior": 99.99,
+    "precoMenor": 89.99,
+    "urls": [
+      "https://www.example.com/clips1.jpg"
+    ]
+  },
+  {
+    "titulo": "Papel Sulfite de Alta Qualidade",
+    "precoMaior": 119.99,
+    "precoMenor": 99.99,
+    "urls": [
+      "https://www.example.com/papel1.jpg"
+    ]
+  },
+  {
+    "titulo": "Tesouras Ergonômicas",
+    "precoMaior": 129.99,
+    "precoMenor": 109.99,
+    "urls": [
+      "https://www.example.com/tesouras1.jpg"
+    ]
+  },
+  {
+    "titulo": "Estojo de Lápis de Cor",
+    "precoMaior": 119.99,
+    "precoMenor": 99.99,
+    "urls": [
+      "https://www.example.com/estojo1.jpg"
+    ]
+  },
+  {
+    "titulo": "Pincéis de Aquarela Profissionais",
+    "precoMaior": 199.99,
+    "precoMenor": 149.99,
+    "urls": [
+      "https://www.example.com/pinceis1.jpg"
+    ]
+  },
+  {
+    "titulo": "Mochila para Material Escolar",
+    "precoMaior": 149.99,
+    "precoMenor": 119.99,
+    "urls": [
+      "https://www.example.com/mochila1.jpg"
+    ]
+  },
+  {
+    "titulo": "Almofadas para Carimbos",
+    "precoMaior": 99.99,
+    "precoMenor": 89.99,
+    "urls": [
+      "https://www.example.com/almofadas1.jpg"
+    ]
+  },
+  {
+    "titulo": "Agenda de Luxo com Capa de Couro",
+    "precoMaior": 299.99,
+    "precoMenor": 249.99,
+    "urls": [
+      "https://www.example.com/agenda2.jpg"
+    ]
+  },
+  {
+    "titulo": "Canetas de Tinta Permanente",
+    "precoMaior": 139.99,
+    "precoMenor": 119.99,
+    "urls": [
+      "https://www.example.com/canetas2.jpg"
+    ]
+  },
+  {
+    "titulo": "Kit de Blocos de Notas Adesivos",
+    "precoMaior": 99.99,
+    "precoMenor": 89.99,
+    "urls": [
+      "https://www.example.com/blocos1.jpg"
+    ]
+  },
+  {
+    "titulo": "Réguas e Esquadros para Desenho",
+    "precoMaior": 109.99,
+    "precoMenor": 89.99,
+    "urls": [
+      "https://www.example.com/reguas1.jpg"
+    ]
+  }
+]

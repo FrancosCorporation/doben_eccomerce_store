@@ -1,0 +1,27 @@
+.container_fraseinicial {
+}
+
+.fraseum {
+    color: #125F92;
+    font-family: 'Leckerli One', cursive;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+}
+
+.frasedois {
+    margin-top: -1.5rem;
+    color: #FFF;
+    font-family: 'Leckerli One', cursive;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    text-shadow: 
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+
+}

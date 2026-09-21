@@ -1,5 +1,23 @@
 # doben_eccomerce_store
 
+## 🐳 Instalação e Execução (Docker) — recomendado
+
+### Pré-requisitos
+- [Docker](https://docs.docker.com/get-docker/) + Docker Compose
+
+### Rodar com Docker
+```bash
+docker compose up --build
+```
+
+
+### Sem Docker (local)
+```bash
+npm install
+npm start
+```
+
+
 Vitrine de e-commerce "DoBen" em **Next.js 13 (App Router) + TypeScript**, com listagem de produtos, carrossel de imagens por produto e zoom na foto.
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat&logo=typescript&logoColor=white)

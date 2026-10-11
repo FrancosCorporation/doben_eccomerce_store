@@ -1,232 +1,162 @@
-"use client"
-import React, { useState } from 'react';
+'use client';
+
+import Image from 'next/image';
+import { useId, useRef, useState } from 'react';
+import type { Product } from '@/types/product';
 import styles from './produto.module.css';
 
-interface ProductProps {
-  title: string;
-  price: number;
-  discountedPrice: number;
-  imageUrls: string[];
+const imageHosts = new Set(['images.tcdn.com.br', 'm.media-amazon.com']);
+
+function isSupportedImage(source: string) {
+  try {
+    const imageUrl = new URL(source);
+    return imageUrl.protocol === 'https:' && imageHosts.has(imageUrl.hostname);
+  } catch {
+    return false;
+  }
 }
 
-const Product: React.FC<ProductProps> = ({ title, price, discountedPrice, imageUrls }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isZoomed, setIsZoomed] = useState(false);
-  const [isImageVisible, setIsImageVisible] = useState(true);
+function formatPrice(value: number) {
+  return new Intl.NumberFormat('pt-BR', { currency: 'BRL', style: 'currency' }).format(value);
+}
 
-  const handleClickOnDot = (index: number) => {
-    setCurrentImageIndex(index);
-  };
+function ArrowIcon({ direction }: { direction: 'left' | 'right' }) {
+  return (
+    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
+      {direction === 'left'
+        ? <path d="M19 12H5m0 0 6 6m-6-6 6-6" />
+        : <path d="M5 12h14m0 0-6-6m6 6-6 6" />}
+    </svg>
+  );
+}
 
-  const handleZoomClick = () => {
-    setIsZoomed(!isZoomed);
-    setIsImageVisible(!isZoomed);
-  };
+export default function ProductCard({ product }: { product: Product }) {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const dialogTitleId = useId();
+  const [activeImage, setActiveImage] = useState(0);
+  const [failedImage, setFailedImage] = useState<string | null>(null);
+  const images = product.urls.filter(isSupportedImage);
+  const currentImage = images[activeImage];
+  const originalPrice = product.precoMaior;
+  const salePrice = product.precoMenor;
+  const hasDiscount = Number.isFinite(originalPrice) && Number.isFinite(salePrice)
+    && originalPrice > 0 && salePrice >= 0 && salePrice < originalPrice;
+  const displayedPrice = hasDiscount ? salePrice : originalPrice;
+  const discountPercent = hasDiscount ? Math.round(((originalPrice - salePrice) / originalPrice) * 100) : 0;
+  const displayImage = currentImage && failedImage !== currentImage ? currentImage : null;
 
-  const handleCloseClick = () => {
-    setIsZoomed(false);
-    setIsImageVisible(true);
-  };
+  function moveImage(direction: -1 | 1) {
+    setActiveImage((index) => (index + direction + images.length) % images.length);
+  }
 
   return (
-    <div style={{ width: '100%', height: '100%', position: 'relative', margin: '25px' }}>
-      <div
-        style={{
-          width: '232px',
-          height: '298px',
-          left: '0px',
-          top: '0px',
-          position: 'relative',
-          opacity: 0.25,
-          background: 'linear-gradient(245deg, #C7E3EF 66%, #ED7160 98%)',
-          boxShadow: '15px 15px 6px rgba(0, 0, 0, 0.25)',
-          borderRadius: '25px',
-          border: '0.50px black solid',
-        }}
-      >{isImageVisible && (
-        <img
-          src={imageUrls[currentImageIndex]}
-          alt={title}
-          style={{
-            width: '232px',
-            height: '212px',
-            position: 'absolute',
-            borderTopLeftRadius: '25px',
-            borderTopRightRadius: '25px',
-            border: '0.50px black solid',
-            cursor: 'pointer',
-          }}
-        />
-      )}</div>
-      <div
-        style={{
-          width: '116px',
-          height: '18px',
-          left: '58px',
-          top: '276px',
-          position: 'absolute',
-        }}
-      >
-        <div
-          style={{
-            width: '116px',
-            height: '18px',
-            left: '0px',
-            top: '0px',
-            position: 'absolute',
-            background: '#0B0F1C',
-            boxShadow: '7px 2px 4px rgba(0, 0, 0, 0.25)',
-            borderRadius: '50px',
-          }}
-        ></div>
-        <div
-          style={{
-            width: '19px',
-            height: '10px',
-            left: '49px',
-            top: '4px',
-            position: 'absolute',
-            color: 'white',
-            fontSize: '8px',
-            fontFamily: 'Inter',
-            fontWeight: 400,
-            wordWrap: 'break-word',
-          }}
-        >
-          ADD
-        </div>
+    <article className={styles.productCard}>
+      <div className={styles.imageFrame}>
+        {displayImage ? (
+          <button
+            aria-label={`Ampliar foto de ${product.titulo}`}
+            className={styles.imageButton}
+            onClick={() => dialogRef.current?.showModal()}
+            type="button"
+          >
+            <Image
+              alt={`${product.titulo}, foto ${activeImage + 1} de ${images.length}`}
+              className={styles.productImage}
+              fill
+              onError={() => setFailedImage(currentImage)}
+              sizes="(max-width: 430px) 90vw, (max-width: 700px) 46vw, (max-width: 1000px) 30vw, 23vw"
+              src={displayImage}
+            />
+            <span aria-hidden="true" className={styles.zoomHint}>Ampliar <span>↗</span></span>
+          </button>
+        ) : (
+          <div aria-label={`Foto ilustrativa indisponível para ${product.titulo}`} className={styles.imagePlaceholder} role="img">
+            <span aria-hidden="true" className={styles.placeholderSheets}><i /><i /><i /></span>
+            <span className={styles.placeholderName}>DoBen</span>
+            <span className={styles.placeholderCaption}>imagem ilustrativa</span>
+          </div>
+        )}
+        {hasDiscount && <span className={styles.discountBadge}>{discountPercent}% OFF</span>}
+        <span className={styles.categoryBadge}>Papelaria</span>
       </div>
-      <div
-        style={{
-          width: '232px',
-          height: '223px',
-          left: '0px',
-          top: '0px',
-          position: 'absolute',
-          
-        }}
-      >
-        {imageUrls.map((url, index) => (
-          <div
-            key={index}
-            style={{
-              width: '8px',
-              height: '8px',
-              left: `${99 + index * 13}px`,
-              top: '215px',
-              position: 'absolute',
-              background: 'white',
-              borderRadius: '9999px',
-              border: '0.50px black solid',
-              cursor: 'pointer',
-            }}
-            onClick={() => handleClickOnDot(index)}
-          ></div>
-        ))}
 
-        <div className={isZoomed ? `${styles.zoomedContainer}` : ''}>
-          {isZoomed ? (
-            <div className={styles.zoomedCloseButton} onClick={handleCloseClick}>X</div>
-          ) : null}
-          <img
-            style={{
-              width: isZoomed ? '768px' : '232px',
-              height: isZoomed ? '689px' : '212px',
-              margin: 'auto', // Centraliza horizontal e verticalmente
-              position: 'relative', // Garante que a imagem esteja contida dentro do contêiner
-              borderTopLeftRadius: isZoomed ? '0px' : '25px',
-              borderTopRightRadius: isZoomed ? '0px' : '25px',
-              border: isZoomed ? '0px' : '0.50px black solid',
-              cursor: 'pointer',
-            }}
-            src={imageUrls[currentImageIndex]}
-            alt={title}
-            onClick={handleZoomClick}
-            className={isZoomed ? styles.zoomedImage : ''}
-          />
+      <div className={styles.productDetails}>
+        <h3 className={styles.productTitle}>{product.titulo}</h3>
+        <div className={styles.prices}>
+          {hasDiscount && <p className={styles.originalPrice}>De <s>{formatPrice(originalPrice)}</s></p>}
+          <p className={styles.currentPrice}>
+            <span>{hasDiscount ? 'Por' : 'Valor demonstrativo'}</span>
+            <strong>{formatPrice(displayedPrice)}</strong>
+          </p>
+          <p className={styles.priceNote}>Preço ilustrativo</p>
         </div>
+
+        {images.length > 1 && (
+          <fieldset className={styles.galleryControls}>
+            <legend className={styles.visuallyHidden}>Fotos de {product.titulo}</legend>
+            <button aria-label="Foto anterior" className={styles.galleryArrow} onClick={() => moveImage(-1)} type="button">
+              <ArrowIcon direction="left" />
+            </button>
+            <div className={styles.galleryDots}>
+              {images.map((image, index) => (
+                <button
+                  aria-label={`Mostrar foto ${index + 1} de ${images.length}`}
+                  aria-pressed={index === activeImage}
+                  className={index === activeImage ? styles.activeDot : styles.galleryDot}
+                  key={image}
+                  onClick={() => setActiveImage(index)}
+                  type="button"
+                />
+              ))}
+            </div>
+            <button aria-label="Próxima foto" className={styles.galleryArrow} onClick={() => moveImage(1)} type="button">
+              <ArrowIcon direction="right" />
+            </button>
+          </fieldset>
+        )}
       </div>
-      <div
-        style={{
-          width: '134px',
-          height: '21px',
-          left: '94px',
-          top: '250px',
-          position: 'absolute',
-          display: 'flex',
-          alignItems: 'flex-end',
-          justifyContent: 'end'
-        }}
+
+      <dialog
+        aria-labelledby={dialogTitleId}
+        className={styles.galleryDialog}
+        ref={dialogRef}
       >
-        <div
-          style={{
-            color: 'black',
-            fontSize: '13px',
-            fontFamily: 'Lexend Deca',
-            fontWeight: 700,
-            wordWrap: 'break-word',
-          }}
-        >
-          A partir:
+        <div className={styles.dialogHeader}>
+          <h2 id={dialogTitleId}>Fotos de {product.titulo}</h2>
+          <button aria-label="Fechar galeria" className={styles.closeButton} onClick={() => dialogRef.current?.close()} type="button">
+            ×
+          </button>
         </div>
-        <div
-          style={{
-            color: '#125F92',
-            fontSize: '16px',
-            fontFamily: 'Lily Script One',
-            fontWeight: 400,
-            wordWrap: 'break-word',
-            marginLeft: '7px'
-          }}
-        >
-          R$ {price.toFixed(2)}
+        <div className={styles.dialogImageFrame}>
+          {displayImage ? (
+            <Image
+              alt={`${product.titulo}, foto ${activeImage + 1} de ${images.length}`}
+              className={styles.dialogImage}
+              fill
+              onError={() => setFailedImage(currentImage)}
+              sizes="(max-width: 800px) 90vw, 760px"
+              src={displayImage}
+            />
+          ) : (
+            <div aria-label={`Foto ilustrativa indisponível para ${product.titulo}`} className={styles.imagePlaceholder} role="img">
+              <span aria-hidden="true" className={styles.placeholderSheets}><i /><i /><i /></span>
+              <span className={styles.placeholderName}>DoBen</span>
+              <span className={styles.placeholderCaption}>imagem ilustrativa</span>
+            </div>
+          )}
         </div>
-      </div>
-      <div
-        style={{
-          width: '67px',
-          height: '18px',
-          left: '40px',
-          top: '244px',
-          position: 'absolute',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <div
-          style={{
-            color: '#F60808',
-            fontSize: '10px',
-            fontFamily: 'Bodoni Moda',
-            fontStyle: 'italic',
-            fontWeight: 700,
-            textDecoration: 'line-through',
-            wordWrap: 'break-word',
-          }}
-        >
-          De: {discountedPrice.toFixed(2)}
-        </div>
-      </div>
-      <div
-        style={{
-          width: '132px',
-          height: '20px',
-          left: '7px',
-          top: '228px',
-          position: 'absolute',
-          color: 'black',
-          fontSize: '13px',
-          fontFamily: 'Leckerli One',
-          fontWeight: 400,
-          wordWrap: 'break-word',
-          textAlign: 'center',
-        }}
-      >
-        {title}
-      </div>
-    </div>
+        {images.length > 1 && (
+          <div className={styles.dialogControls}>
+            <button aria-label="Foto anterior" className={styles.dialogArrow} onClick={() => moveImage(-1)} type="button">
+              <ArrowIcon direction="left" />
+            </button>
+            <span aria-live="polite">{activeImage + 1} / {images.length}</span>
+            <button aria-label="Próxima foto" className={styles.dialogArrow} onClick={() => moveImage(1)} type="button">
+              <ArrowIcon direction="right" />
+            </button>
+          </div>
+        )}
+      </dialog>
+    </article>
   );
-};
-
-export default Product;
+}

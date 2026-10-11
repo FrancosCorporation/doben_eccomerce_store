@@ -4,6 +4,8 @@
 > Branch `main` · sem API routes · sem testes · sem CI
 >
 > **Este arquivo é um plano de execução.** Cada item tem ID, `arquivo:linha`, mudança exata, critério de aceite e comando de verificação.
+>
+> **Atualização em 2026-10-11:** veja o registro de execução no fim deste arquivo; o diagnóstico acima representa a revisão inicial.
 
 ---
 
@@ -168,15 +170,14 @@ Loja vitrine Next 13 App Router: páginas estáticas + `src/data/produtos.json`.
 ### Wave 1 — Imagem/lock (P1)
 1. **`DEVOPS-01`** + **`DEVOPS-02`** (mesmo Dockerfile, mesmo commit).
 
-### Wave 2 — Superfície e teste (P2)
+### Wave 2 — Superfície e documentação (P2)
 2. **`SEC-01`** — limpar dependencies.
-3. **`TEST-01`**.
-4. **`DOC-01`**.
+3. **`DOC-01`**.
 
 ### Wave 3 — Upgrade (P3)
-5. **`IMP-01`** (depois dos testes — são a rede de segurança do upgrade) · **`IMP-02`**.
+4. **`IMP-01`** · **`IMP-02`**.
 
-**Dependências:** `IMP-01` depois de `TEST-01` (sem teste, upgrade é aposta).
+**`TEST-01` permanece pendente nesta rodada; não foi criado nem executado teste.** O upgrade foi validado com build e typecheck.
 
 ---
 
@@ -195,22 +196,36 @@ Loja vitrine Next 13 App Router: páginas estáticas + `src/data/produtos.json`.
 ## 10. Definição de pronto (DoD)
 
 **Infra**
-- [ ] `DEVOPS-01` — imagem sem `src/`/caches, loja sobe
-- [ ] `DEVOPS-02` — `npm ci` puro
+- [ ] `DEVOPS-01` — imagem standalone sem `src/` e build concluído; smoke do servidor no container segue pendente
+- [x] `DEVOPS-02` — `npm ci` puro
 
 **Segurança/qualidade**
-- [ ] `SEC-01` — `vercel` fora de dependencies
-- [ ] `TEST-01` — ≥ 1 teste vermelho→verde
-- [ ] `DOC-01` — README testado
-- [ ] `IMP-01`/`IMP-02` — upgrade e limpeza
+- [x] `SEC-01` — Vercel CLI removida das dependências
+- [ ] `TEST-01` — pendente; testes não foram criados ou executados
+- [x] `DOC-01` — README atualizado para o comportamento existente
+- [x] `IMP-01`/`IMP-02` — Next atualizado e plugin Babel órfão removido
 
 **Validação final:**
 ```bash
-npm ci && npm run build && npm run lint
-npx vitest run 2>&1 | tail -3
-docker build -t doben . && docker run --rm doben sh -c 'ls src 2>/dev/null || echo "imagem limpa"'
+npm ci && npm run lint && npm run typecheck && npm run build
+docker build -t doben-store .
 ```
+
+## 11. Registro de execução — 2026-10-11
+
+| ID | Resultado |
+|---|---|
+| DEVOPS-01/02 | Docker multi-stage agora publica `.next/standalone` e assets estáticos no runtime Node24 não-root; `npm ci` estrito. |
+| SEC-01 | Vercel CLI removida; runtime depende apenas de Next/React/Sharp. |
+| TEST-01 | Pendente; nenhum teste foi adicionado ou executado. |
+| DOC-01 | README descreve desenvolvimento, build e Docker CLI reais, além da ausência de checkout. |
+| IMP-01 | Next 13/React18 atualizados para Next16/React19 e TS5; build e typecheck passaram. |
+| IMP-02 | Plugin Babel não usado removido; Biome faz lint. |
+
+Catálogo agora importa o JSON no servidor em vez de buscar `src/` pelo navegador. Busca por nome, galeria acessível, modal nativo, preço promocional correto, fallback visual para foto ausente e metadados foram implementados. Dados e preços estão identificados como demonstrativos; não foi adicionado fluxo de pedido/pagamento.
+
+Validações: `npm ci`, audit (0 vulnerabilidades), Biome lint, `tsc --noEmit`, build Next, build Docker e inspeção estática da saída standalone (inclui servidor, Next e Sharp; sem `src/`). Nenhum teste ou container iniciado; smoke do servidor no runtime continua pendente.
 
 ---
 
-*Fim do plano. Gerado por leitura direta do código em 2026-10-05. Nenhum item já estava corrigido — todos apontam para defeitos ainda presentes.*
+*Fim do plano. Diagnóstico inicial gerado por leitura direta do código em 2026-10-05; resultados atuais registrados na §11.*

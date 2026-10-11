@@ -1,0 +1,99 @@
+.footer {
+  padding: 34px 3.5% 22px;
+  border-top: 1px solid var(--line);
+}
+
+.footerMain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 28px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -.04em;
+  text-decoration: none;
+}
+
+.brandLabel {
+  display: grid;
+  gap: 2px;
+}
+
+.brandCaption {
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.brandMark {
+  display: grid;
+  width: 37px;
+  height: 37px;
+  place-items: center;
+  border-radius: 13px 13px 13px 4px;
+  background: var(--ink);
+  color: white;
+  font-family: Georgia, serif;
+  font-size: 22px;
+}
+
+.footerMain > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.backToTop,
+.footerBottom a {
+  color: var(--ink-soft);
+  font-size: 10px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.backArrow {
+  margin-left: 5px;
+  color: var(--coral-dark);
+}
+
+.footerBottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 17px;
+  border-top: 1px solid var(--line);
+  color: #8a9085;
+  font-size: 9px;
+}
+
+.footerBottom a {
+  color: #737d70;
+}
+
+@media (max-width: 620px) {
+  .footer {
+    padding: 27px 0 20px;
+  }
+
+  .footerMain {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 13px;
+    padding-bottom: 21px;
+  }
+
+  .footerBottom {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

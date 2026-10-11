@@ -1,0 +1,71 @@
+:root {
+  color-scheme: light;
+  --ink: #29372f;
+  --ink-soft: #536157;
+  --muted: #778176;
+  --coral: #df856e;
+  --coral-dark: #b7614d;
+  --cream: #f3f1e8;
+  --paper: #fffdf8;
+  --line: #e9e7dd;
+  --line-dark: #d9d9cd;
+  font-family: Arial, Helvetica, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  background: var(--paper);
+}
+
+a,
+button,
+input {
+  font: inherit;
+}
+
+button,
+a,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 3px solid #d4836e;
+  outline-offset: 4px;
+}
+
+::selection {
+  background: #f0c9bb;
+  color: #28362d;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

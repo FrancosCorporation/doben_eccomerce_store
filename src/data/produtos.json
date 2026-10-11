@@ -25,144 +25,108 @@
     "titulo": "Canetas Gel Multicoloridas",
     "precoMaior": 119.99,
     "precoMenor": 99.99,
-    "urls": [
-      "https://www.example.com/canetas1.jpg"
-    ]
+    "urls": []
   },
   {
     "titulo": "Kit de Marcadores Pastel",
     "precoMaior": 129.99,
     "precoMenor": 109.99,
-    "urls": [
-      "https://www.example.com/marcadores1.jpg"
-    ]
+    "urls": []
   },
   {
     "titulo": "Agenda de Couro Premium",
     "precoMaior": 249.99,
     "precoMenor": 199.99,
-    "urls": [
-      "https://www.example.com/agenda1.jpg"
-    ]
+    "urls": []
   },
   {
     "titulo": "Lápis de Cor Profissionais",
     "precoMaior": 179.99,
     "precoMenor": 149.99,
-    "urls": [
-      "https://www.example.com/lapis1.jpg"
-    ]
+    "urls": []
   },
   {
     "titulo": "Organizador de Papéis",
     "precoMaior": 149.99,
     "precoMenor": 119.99,
-    "urls": [
-      "https://www.example.com/organizador1.jpg"
-    ]
+    "urls": []
   },
   {
     "titulo": "Kit de Papéis de Scrapbooking",
     "precoMaior": 159.99,
     "precoMenor": 129.99,
-    "urls": [
-      "https://www.example.com/scrapbooking1.jpg"
-    ]
+    "urls": []
   },
   {
     "titulo": "Borrachas Divertidas",
     "precoMaior": 99.99,
     "precoMenor": 89.99,
-    "urls": [
-      "https://www.example.com/borrachas1.jpg"
-    ]
+    "urls": []
   },
   {
     "titulo": "Conjunto de Clips Decorativos",
     "precoMaior": 99.99,
     "precoMenor": 89.99,
-    "urls": [
-      "https://www.example.com/clips1.jpg"
-    ]
+    "urls": []
   },
   {
     "titulo": "Papel Sulfite de Alta Qualidade",
     "precoMaior": 119.99,
     "precoMenor": 99.99,
-    "urls": [
-      "https://www.example.com/papel1.jpg"
-    ]
+    "urls": []
   },
   {
     "titulo": "Tesouras Ergonômicas",
     "precoMaior": 129.99,
     "precoMenor": 109.99,
-    "urls": [
-      "https://www.example.com/tesouras1.jpg"
-    ]
+    "urls": []
   },
   {
     "titulo": "Estojo de Lápis de Cor",
     "precoMaior": 119.99,
     "precoMenor": 99.99,
-    "urls": [
-      "https://www.example.com/estojo1.jpg"
-    ]
+    "urls": []
   },
   {
     "titulo": "Pincéis de Aquarela Profissionais",
     "precoMaior": 199.99,
     "precoMenor": 149.99,
-    "urls": [
-      "https://www.example.com/pinceis1.jpg"
-    ]
+    "urls": []
   },
   {
     "titulo": "Mochila para Material Escolar",
     "precoMaior": 149.99,
     "precoMenor": 119.99,
-    "urls": [
-      "https://www.example.com/mochila1.jpg"
-    ]
+    "urls": []
   },
   {
     "titulo": "Almofadas para Carimbos",
     "precoMaior": 99.99,
     "precoMenor": 89.99,
-    "urls": [
-      "https://www.example.com/almofadas1.jpg"
-    ]
+    "urls": []
   },
   {
     "titulo": "Agenda de Luxo com Capa de Couro",
     "precoMaior": 299.99,
     "precoMenor": 249.99,
-    "urls": [
-      "https://www.example.com/agenda2.jpg"
-    ]
+    "urls": []
   },
   {
     "titulo": "Canetas de Tinta Permanente",
     "precoMaior": 139.99,
     "precoMenor": 119.99,
-    "urls": [
-      "https://www.example.com/canetas2.jpg"
-    ]
+    "urls": []
   },
   {
     "titulo": "Kit de Blocos de Notas Adesivos",
     "precoMaior": 99.99,
     "precoMenor": 89.99,
-    "urls": [
-      "https://www.example.com/blocos1.jpg"
-    ]
+    "urls": []
   },
   {
     "titulo": "Réguas e Esquadros para Desenho",
     "precoMaior": 109.99,
     "precoMenor": 89.99,
-    "urls": [
-      "https://www.example.com/reguas1.jpg"
-    ]
+    "urls": []
   }
 ]

@@ -1,19 +1,19 @@
-import './globals.css'
-import type { Metadata } from 'next'
+import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'DoBen',
-  description: 'Realizando seus Sonhos !',
-}
+  title: 'DoBen | Papelaria para ideias em movimento',
+  description: 'Uma vitrine demonstrativa de papelaria criativa para estudar, planejar e criar.',
+  icons: {
+    icon: '/favicon.svg',
+  },
+};
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="pt-br">
-      <body className='{inter.className}'>{children}</body>
+    <html lang="pt-BR">
+      <body>{children}</body>
     </html>
-  )
+  );
 }

@@ -5,7 +5,7 @@
 >
 > **Este arquivo é um plano de execução.** Cada item tem ID, `arquivo:linha`, mudança exata, critério de aceite e comando de verificação.
 >
-> **Atualização em 2026-10-11:** veja o registro de execução no fim deste arquivo; o diagnóstico acima representa a revisão inicial.
+> **Atualizações em 2026-10-11 e 2026-10-12:** veja os registros de execução no fim deste arquivo; o diagnóstico acima representa a revisão inicial.
 
 ---
 
@@ -48,6 +48,7 @@ Loja vitrine Next 13 App Router: páginas estáticas + `src/data/produtos.json`.
 | DEVOPS-02 | `npm ci || npm install` mascara falha | **P1** | `Dockerfile` | — |
 | SEC-01 | `vercel` CLI em dependencies (superfície de build em runtime) | **P2** | `package.json` | — |
 | TEST-01 | Zero testes | **P2** | *(ausente)* | — |
+| DEVOPS-03 | Sem CI para audit, lint, tipos, build e imagem Docker | **P2** | `.github/workflows/ci.yml` | — |
 | DOC-01 | README — citar o que falta | **P2** | `README.md` | — |
 | IMP-01 | Next 13 → 14/15 (upgrade path) | **P3** | `package.json` | — |
 | IMP-02 | `@babel/plugin-transform-react-jsx` devDep possivelmente órfão | **P3** | `package.json` | — |
@@ -179,6 +180,13 @@ Loja vitrine Next 13 App Router: páginas estáticas + `src/data/produtos.json`.
 
 **`TEST-01` permanece pendente nesta rodada; não foi criado nem executado teste.** O upgrade foi validado com build e typecheck.
 
+### DEVOPS-03 · CI estática ausente [P2]
+
+- **Estado inicial:** não havia workflow versionado.
+- **Implementação:** `.github/workflows/ci.yml` valida audit, Biome, TypeScript e build em Node 22/24 e constrói a imagem Docker de produção. Permissões de conteúdo somente leitura; sem testes, secrets ou inicialização de container.
+- **Aceite:** os dois jobs ficam verdes em push/pull request e o Dockerfile continua produzindo a imagem standalone.
+- **Verificação:** consultar o run remoto registrado na §12; localmente validar YAML e `git diff --check`.
+
 ---
 
 ## 9. Fora de escopo / riscos
@@ -200,6 +208,7 @@ Loja vitrine Next 13 App Router: páginas estáticas + `src/data/produtos.json`.
 - [x] `DEVOPS-02` — `npm ci` puro
 
 **Segurança/qualidade**
+- [x] `DEVOPS-03` — CI estática em Node 22/24 e build da imagem Docker.
 - [x] `SEC-01` — Vercel CLI removida das dependências
 - [ ] `TEST-01` — pendente; testes não foram criados ou executados
 - [x] `DOC-01` — README atualizado para o comportamento existente
@@ -225,6 +234,15 @@ docker build -t doben-store .
 Catálogo agora importa o JSON no servidor em vez de buscar `src/` pelo navegador. Busca por nome, galeria acessível, modal nativo, preço promocional correto, fallback visual para foto ausente e metadados foram implementados. Dados e preços estão identificados como demonstrativos; não foi adicionado fluxo de pedido/pagamento.
 
 Validações: `npm ci`, audit (0 vulnerabilidades), Biome lint, `tsc --noEmit`, build Next, build Docker e inspeção estática da saída standalone (inclui servidor, Next e Sharp; sem `src/`). Nenhum teste ou container iniciado; smoke do servidor no runtime continua pendente.
+
+## 12. Registro de execução — 2026-10-12
+
+| ID | Resultado |
+|---|---|
+| DEVOPS-03 | Workflow estático para Node 22/24 e build Docker criado; audit, lint, typecheck e build da aplicação incluídos; sem testes ou serviços. |
+| TEST-01 | Pendente: o projeto continua sem suíte automatizada; nenhum teste foi adicionado ou executado. |
+
+README atualizado para descrever a CI e a ausência de testes. Verificações locais e resultado remoto serão registrados após a validação do workflow.
 
 ---
 

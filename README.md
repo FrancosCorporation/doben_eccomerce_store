@@ -34,6 +34,12 @@ npm start
 
 `npm start` serve o build de produção na porta 3000.
 
+## Integração contínua
+
+Em push e pull request, a CI valida dependências, lint, tipos e build em Node.js
+22 e 24, além de construir a imagem Docker de produção. O projeto ainda não
+tem uma suíte de testes automatizada.
+
 ## Docker
 
 ```bash

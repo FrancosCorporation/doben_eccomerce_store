@@ -239,10 +239,10 @@ Validações: `npm ci`, audit (0 vulnerabilidades), Biome lint, `tsc --noEmit`, 
 
 | ID | Resultado |
 |---|---|
-| DEVOPS-03 | Workflow estático para Node 22/24 e build Docker criado; audit, lint, typecheck e build da aplicação incluídos; sem testes ou serviços. |
+| DEVOPS-03 | Workflow estático para Node 22/24 e build Docker criado; CI `38198710585` verde nos três jobs; sem testes ou serviços. |
 | TEST-01 | Pendente: o projeto continua sem suíte automatizada; nenhum teste foi adicionado ou executado. |
 
-README atualizado para descrever a CI e a ausência de testes. Verificações locais e resultado remoto serão registrados após a validação do workflow.
+README atualizado para descrever a CI e a ausência de testes. `npm ci`, audit alto (zero), lint, typecheck, build Next, build Docker, parse YAML e diff check passaram localmente.
 
 ---
 
